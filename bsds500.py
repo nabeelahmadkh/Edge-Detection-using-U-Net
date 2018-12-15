@@ -18,7 +18,6 @@ def list_files(base_path, validExts=(".jpg", ".jpeg", ".png", ".bmp"), contains=
         # loop over the filenames in the current directory
         for filename in filenames:
             # if the contains string is not none and the filename does not contain
-            # the supplied string, then ignore the file
             if contains is not None and filename.find(contains) == -1:
                 continue
 
@@ -27,7 +26,6 @@ def list_files(base_path, validExts=(".jpg", ".jpeg", ".png", ".bmp"), contains=
 
             # check to see if the file is an image and should be processed
             if ext.endswith(validExts):
-                # construct the path to the image and yield it
                 imagePath = os.path.join(rootDir, filename).replace(" ", "\\ ")
                 yield imagePath
 
@@ -49,13 +47,6 @@ class BSDS500(object):
         self.images_to_gray = images_to_gray
         self.target_size = target_size
         self.masks_to_binary = masks_to_binary
-
-        # self.TRAIN_PATH = os.path.join(self.BSDS_BASE, 'BSDS500/data1/images/train/')
-        # self.TEST_PATH = os.path.join(self.BSDS_BASE, 'BSDS500/data1/images/test/')
-        # self.VALID_PATH = os.path.join(self.BSDS_BASE, 'BSDS500/data1/images/val/')
-        # self.GROUND_TRUTH_TRAIN = os.path.join(self.BSDS_BASE, 'BSDS500/data1/groundTruth/train/')
-        # self.GROUND_TRUTH_TEST = os.path.join(self.BSDS_BASE, 'BSDS500/data1/groundTruth/test/')
-        # self.GROUND_TRUTH_VALID = os.path.join(self.BSDS_BASE, 'BSDS500/data1/groundTruth/val/')
 
         self.TRAIN_PATH = 'data/images/train/'
         self.TEST_PATH = 'data/images/test/'
