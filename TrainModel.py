@@ -91,17 +91,10 @@ csv_callback = CSVLogger('history.log', append=True)
 unet = ConstructUnet(256, 256, 3)
 history = unet.fit(Images, Contours, verbose=2, epochs=200, validation_split=0.1, callbacks=[csv_callback])
 
-'''
-csv_callback = CSVLogger('history.log', append=True)
-unet = ConstructUnet(256, 256, 3)
-H = unet.fit(Images, Contours, verbose=2, epochs=200, validation_split=0.1, callbacks=[csv_callback])
-'''
-# unet = load_model('unet.keras')
 save_model(unet, 'unet9-6Dec-11-00am.keras')
 
 import seaborn
 f = pd.DataFrame(history.history)[['loss','val_loss']].plot(figsize=(12,9))
-#f = pd.DataFrame(history)[['loss','val_loss']].plot(figsize=(12,9))
 plt.title('model training')
 plt.ylabel('binary_crossentropy_loss')
 plt.xlabel('epochs')
