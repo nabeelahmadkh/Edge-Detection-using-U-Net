@@ -5,15 +5,11 @@ from skimage import data
 from skimage.transform import resize
 from keras.models import load_model
 
-# import matplotlib.pyplot as plt
 import sys
 
 warnings.filterwarnings('ignore')
-coins = data.coins()
-
 
 def to_rgb1(im):
-    # I think this will be slow
     w, h = im.shape
     ret = np.empty((w, h, 3), dtype=np.uint8)
     ret[:, :, 0] = im
@@ -23,7 +19,6 @@ def to_rgb1(im):
 
 def float_image_to_uint8(im):
     return (im * 255).round().astype('uint8')
-
 
 def predict_custom_image(image=None, model=None):
     if isinstance(image, str):
